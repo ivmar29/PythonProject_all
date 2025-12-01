@@ -3,13 +3,13 @@ from clan import Clan
 from knjiga import Knjiga
 
 
-#kreiranje knjige
+#kreiranje knjigea
 knjiga1 = Knjiga("Star Wars 1", "Lucas")
 knjiga2 = Knjiga("Star Wars 2", "Lucas")
 knjiga3 = Knjiga("Star Wars 3", "Lucas")
 knjiga4 = Knjiga("Star Wars 4", "Lucas")
 
-#kreiraj clanove
+#kreiraj clanovee
 clan1 = Clan("Ivan",31, "ivan@gmail.com",)
 clan2 = Clan("Matea",29, "matea@gmail.com",)
 clan3 = Clan("Valentina",22, "tina@gmail.com",)
