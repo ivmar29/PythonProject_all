@@ -46,5 +46,21 @@
     {
         "name": "Star Wars 4",
         "author": "Lucas"
+    },
+    {
+        "name": "Star Wars 1",
+        "author": "Lucas"
+    },
+    {
+        "name": "Star Wars 2",
+        "author": "Lucas"
+    },
+    {
+        "name": "Star Wars 3",
+        "author": "Lucas"
+    },
+    {
+        "name": "Star Wars 4",
+        "author": "Lucas"
     }
 ]

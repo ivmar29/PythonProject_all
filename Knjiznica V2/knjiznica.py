@@ -7,6 +7,9 @@ class Knjiznica:
         self.clanovi = []
         self.json_file = json_file # Pamti ime JSON fajla gdje će se čuvati podaci o knjigama.
 
+#-------------------------------------------------------------------------------------------
+#Ucitavanje i provjera JSON-a
+
         #ako json postoji ucitaj podatke
         if os.path.exists(json_file):
             try:
@@ -31,7 +34,9 @@ class Knjiznica:
             with open(self.json_file,"w", encoding="utf-8") as f:
                 json.dump(self.knjige, f,index=4,ensure_ascii=False)
 
-    def __str__(self):
+#------------------------------------------------------------------------------------------------
+
+    def __str__(self): # definiranje načina na koji će se objekt te klase prikazati kao tekst.
         return f"{self.name}"
 
     def spremi_u_json(self):
