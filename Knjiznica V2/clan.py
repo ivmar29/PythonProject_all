@@ -1,6 +1,7 @@
 class Clan:
 
-    def __init__(self, name, age, email, ):
+    def __init__(self,id, name, age, email, ):
+        self.id = id
         self.name = name
         self.age = age
         self.email = email

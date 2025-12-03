@@ -7,53 +7,63 @@ class Knjiznica:
         self.clanovi = []
         self.json_file = json_file # Pamti ime JSON fajla gdje će se čuvati podaci o knjigama.
 
-#-------------------------------------------------------------------------------------------
-#Ucitavanje i provjera JSON-a
+        # ----------------------------------------------------
+        # Učitavanje JSON-a ako postoji
+        # ----------------------------------------------------
 
-        #ako json postoji ucitaj podatke
         if os.path.exists(json_file):
             try:
-                with open(json_file,"r", encoding="utf-8") as f:
-                    content = f.read().strip() # Ove dvije linije otvaraju JSON fajl i učitavaju njegov sadržaj kao tekst,
-                                               # bez nepotrebnih razmaka, kako bi se moglo provjeriti je li datoteka prazna.
-
-                # ako je fajl prazan, napravi praznu listu
-                #ovo radimo zato što json.load(f) NE MOŽE učitati prazan fajl i baca grešku
-                if content == "":
-                    self.knjige = []
-                else:
-                    self.knjige = json.loads(content)
-
-            except json.JSONDecodeError:
-            # fajl postoji, ali je oštećen
-                self.knjige = []
-
+                with open(json_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)  # pokušaj učitati JSON
+            except (json.JSONDecodeError, FileNotFoundError):
+                data = {}  # ako je prazan ili oštećen
         else:
-            #ako ne postji napravi prazni json
-            self.knjige = []
-            with open(self.json_file,"w", encoding="utf-8") as f:
-                json.dump(self.knjige, f,index=4,ensure_ascii=False)
+            data = {}  # ako ne postoji
 
-#------------------------------------------------------------------------------------------------
+        self.knjige = data.get("knjige", [])
+        #Pokušaj dohvatiti vrijednost pod ključem "knjige", Ako taj ključ ne postoji (ili JSON nema "knjige"), vrati praznu listu []
+        self.clanovi = data.get("clanovi", [])
+        # Isto.
+
+        # Garantira da self.knjige i self.clanovi uvijek postoje kao liste
+        # Sprječava greške kada pokušamo kasnije dodati knjigu ili člana u listu
+        #------------------------------------------------------------------------------------------------
 
     def __str__(self): # definiranje načina na koji će se objekt te klase prikazati kao tekst.
         return f"{self.name}"
 
     def spremi_u_json(self):
+        data = {
+            "knjige":self.knjige,
+            "clanovi":self.clanovi,
+         }
         with open(self.json_file,"w", encoding="utf-8") as f:
-            json.dump(self.knjige, f, indent=4,ensure_ascii=False)
+            json.dump(data,f,indent=4,ensure_ascii=False)
 
     def dodaj_knjigu(self, knjiga):
+        for k in self.knjige:
+            if k["name"].lower() == knjiga.name.lower() and k["author"].lower() == knjiga.author.lower():
+                print(f"Knjiga '{knjiga.name}' već postoji!")
+                return  # izlaz, ne dodajemo duplikat
         self.knjige.append({
             "name": knjiga.name,
             "author": knjiga.author
         })
-        #odmah spremi novu listu u json
-        self.spremi_u_json()
+        self.spremi_u_json()  #odmah spremi novu listu u json
         print(f"Knjiga '{knjiga.name}' dodana u knjižnicu '{self.name}'.")
 
     def dodaj_clana(self,clan):
-        self.knjige.append(clan)
+        for k in self.clanovi:
+            if k["email"] == clan.email:
+                print(f"Član '{clan.name}' već postoji!")
+                return  # izlaz, ne dodajemo duplikat
+        self.clanovi.append({
+            "id": clan.id,
+            "name": clan.name,
+            "age": clan.age,
+            "email": clan.email
+        })
+        self.spremi_u_json()  # odmah spremi novu listu u json
         print(f"Član '{clan.name}' je dodan/a.")
 
    # def posudi_knjigu(self, knjiga):

@@ -1,66 +1,26 @@
-[
-    {
-        "name": "Star Wars 1",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 2",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 3",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 4",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 1",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 2",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 3",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 4",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 1",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 2",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 3",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 4",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 1",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 2",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 3",
-        "author": "Lucas"
-    },
-    {
-        "name": "Star Wars 4",
-        "author": "Lucas"
-    }
-]
+{
+    "knjige": [
+        {
+            "name": "Star Wars 1",
+            "author": "Lucas"
+        },
+        {
+            "name": "Star Wars 2",
+            "author": "Lucas"
+        }
+    ],
+    "clanovi": [
+        {
+            "id": 1,
+            "name": "Ivan",
+            "age": 31,
+            "email": "ivan@gmail.com"
+        },
+        {
+            "id": 2,
+            "name": "Matea",
+            "age": 29,
+            "email": "matea@gmail.com"
+        }
+    ]
+}
