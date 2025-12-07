@@ -1,12 +1,28 @@
 {
     "knjige": [
         {
-            "name": "Star Wars 1",
-            "author": "Lucas"
+            "name": "Vlak u snijegu",
+            "author": "Mato Lovrak"
         },
         {
-            "name": "Star Wars 2",
-            "author": "Lucas"
+            "name": "Biblija",
+            "author": "None"
+        },
+        {
+            "name": "Da Vincijev Kod",
+            "author": "Dan Brown"
+        },
+        {
+            "name": "Satr wars",
+            "author": "adsa"
+        },
+        {
+            "name": "Star Wars 1",
+            "author": "lucas"
+        },
+        {
+            "name": "1",
+            "author": "1"
         }
     ],
     "clanovi": [
@@ -18,9 +34,15 @@
         },
         {
             "id": 2,
-            "name": "Matea",
-            "age": 29,
-            "email": "matea@gmail.com"
+            "name": "Petar",
+            "age": "14",
+            "email": "petar@gmail.com"
+        },
+        {
+            "id": 3,
+            "name": "Lui",
+            "age": "25",
+            "email": "lui@hotmail.com"
         }
     ]
 }

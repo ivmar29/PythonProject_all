@@ -41,10 +41,16 @@ class Knjiznica:
             json.dump(data,f,indent=4,ensure_ascii=False)
 
     def dodaj_knjigu(self, knjiga):
+        # Provjera praznih unosa
+        if not knjiga.name.strip() or not knjiga.author.strip(): # "" u pythonu znaci "false"
+            print("Niste unijeli naziv knjige i/ili autora!")
+            return
+        # Provjera duplikata
         for k in self.knjige:
             if k["name"].lower() == knjiga.name.lower() and k["author"].lower() == knjiga.author.lower():
                 print(f"Knjiga '{knjiga.name}' već postoji!")
                 return  # izlaz, ne dodajemo duplikat
+        # Unos knjige
         self.knjige.append({
             "name": knjiga.name,
             "author": knjiga.author
@@ -53,16 +59,33 @@ class Knjiznica:
         print(f"Knjiga '{knjiga.name}' dodana u knjižnicu '{self.name}'.")
 
     def dodaj_clana(self,clan):
+
+        # Provjera praznih unosa
+        if not clan.name.strip()  or not clan.age.strip() or not clan.email.strip(): # "" u pythonu znaci "false"
+            print("Niste unijeli sve podatke!")
+            return
+
+        # Provjera jesu li godine broj
+        if not clan.age.isdigit():
+            print("Niste unijeli broj kao godine!")
+            return
+
+        # Provjera duplikata
         for k in self.clanovi:
             if k["email"] == clan.email:
                 print(f"Član '{clan.name}' već postoji!")
                 return  # izlaz, ne dodajemo duplikat
+        # auto ID
+        clan.id = len(self.clanovi) + 1
+
+        # Dodavanje u listu
         self.clanovi.append({
             "id": clan.id,
             "name": clan.name,
             "age": clan.age,
             "email": clan.email
         })
+        # Spremanje u JSON
         self.spremi_u_json()  # odmah spremi novu listu u json
         print(f"Član '{clan.name}' je dodan/a.")
 
