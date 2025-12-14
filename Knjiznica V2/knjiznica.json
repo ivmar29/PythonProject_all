@@ -1,48 +1,41 @@
 {
     "knjige": [
         {
+            "name": "Družba Pere Kvržice",
+            "author": "Mato Lovrak",
+            "dostupno": false
+        },
+        {
             "name": "Vlak u snijegu",
-            "author": "Mato Lovrak"
-        },
-        {
-            "name": "Biblija",
-            "author": "None"
-        },
-        {
-            "name": "Da Vincijev Kod",
-            "author": "Dan Brown"
-        },
-        {
-            "name": "Satr wars",
-            "author": "adsa"
-        },
-        {
-            "name": "Star Wars 1",
-            "author": "lucas"
-        },
-        {
-            "name": "1",
-            "author": "1"
+            "author": "Mato Lovrak",
+            "dostupno": false
         }
     ],
     "clanovi": [
         {
             "id": 1,
             "name": "Ivan",
-            "age": 31,
-            "email": "ivan@gmail.com"
+            "age": "31",
+            "email": "ivan@gmail.com",
+            "posudene_knjige": [
+                "Družba Pere Kvržice"
+            ]
         },
         {
             "id": 2,
-            "name": "Petar",
-            "age": "14",
-            "email": "petar@gmail.com"
+            "name": "Matea",
+            "age": "29",
+            "email": "matea@gmail.com",
+            "posudene_knjige": []
         },
         {
             "id": 3,
-            "name": "Lui",
-            "age": "25",
-            "email": "lui@hotmail.com"
+            "name": "Tina",
+            "age": "22",
+            "email": "tina@gmail.com",
+            "posudene_knjige": [
+                "Vlak u snijegu"
+            ]
         }
     ]
 }

@@ -5,5 +5,6 @@ class Clan:
         self.name = name
         self.age = age
         self.email = email
+        self.posudene_knjige = []
     def __str__(self):
         return f"{self.name},{self.age},{self.email}"

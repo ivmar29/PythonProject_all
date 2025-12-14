@@ -3,6 +3,10 @@ from clan import Clan
 from knjiga import Knjiga
 knjiga = None
 clan = None
+
+#stvorimo knjiznicu
+knjiznica = Knjiznica("Gradska knjiznica")
+
 # Izbornik
 print("=== IZBORNIK ===")
 print("Izaberite broj")
@@ -15,25 +19,23 @@ a = input("1. Dodaj knjigu\n"
 if a == "1":
     print("=== Unos nove knjige ===")
     knjiga = Knjiga(input("Unesi naziv knjige: "),input("Unesi naziv autora: "))
+    knjiznica.dodaj_knjigu(knjiga)
 #kreiraj clanovee
 elif a == "2":
     print("=== Unos novog člana ===")
     clan = Clan(input("Ime: "), input("Godine: "), input("Email: "))
-
-
-#stvorimo knjiznicu
-knjiznica = Knjiznica("Gradska knjiznica")
-
-#dodaj knjigu
-if knjiga is not None: #ukoliko smo odabrali opciju koja nije "dodaj knjigu"
-    # ovo sprijecava da knjiznica doda knjigu a ne postoji ta varijabla "knjiga". Početna vriijednost knjige gore u programu je None.
-    knjiznica.dodaj_knjigu(knjiga)
-
-
-#dodaje clanove
-if clan is not None:
     knjiznica.dodaj_clana(clan)
-
-
+# posudi knjigu
+elif a == "3":
+    print("=== Posuđivanje knjiga ===")
+    ime_clan= input("Ime člana: ")
+    naslov_knjiga = input("Unesite ime knjige: ")
+    knjiznica.posudi_knjigu(ime_clan, naslov_knjiga)
+# vrati knjigu
+elif a == "4":
+    print("=== Vrati knjigu ===")
+    ime_clan = input("Ime člana: ")
+    naslov_knjiga = input("Unesite ime knjige: ")
+    knjiznica.vrati_knjigu(ime_clan, naslov_knjiga)
 
 
