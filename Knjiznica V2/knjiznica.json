@@ -29,6 +29,11 @@
             "name": "Knjiga 3",
             "author": "Autor 3",
             "dostupno": true
+        },
+        {
+            "name": "Knjiga 4",
+            "author": "Autor 4",
+            "dostupno": true
         }
     ],
     "clanovi": [
@@ -69,6 +74,13 @@
             "name": "Slavko",
             "age": "40",
             "email": "slavko40@gmail.com",
+            "posudene_knjige": []
+        },
+        {
+            "id": 6,
+            "name": "Luka",
+            "age": "22",
+            "email": "luka22@gmail.com",
             "posudene_knjige": []
         }
     ]

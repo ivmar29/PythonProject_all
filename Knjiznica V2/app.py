@@ -68,11 +68,56 @@ def prikazi_dodaj_clana():
     )
     spremi_btn.pack(pady=20)
 
+# "Posudi knjigu"
+def prikazi_posudi_knjigu():
+    clear_frame()
+
+    naslov_knjige = ctk.CTkEntry(content_frame, placeholder_text="Naziv knjige")
+    naslov_knjige.pack(pady=10)
+
+    ime_clana = ctk.CTkEntry(content_frame, placeholder_text="Ime člana")
+    ime_clana.pack(pady=10)
+
+    def spremi():
+        knjiznica.posudi_knjigu(ime_clana.get(),naslov_knjige.get())
+
+    spremi_btn = ctk.CTkButton(
+        content_frame,
+        text="Posudi knjigu",
+        command=spremi
+    )
+    spremi_btn.pack(pady=20)
+
+# "Vrati knjigu"
+def prikazi_vrati_knjigu():
+    clear_frame()
+
+    naslov_knjige = ctk.CTkEntry(content_frame, placeholder_text="Naziv knjige")
+    naslov_knjige.pack(pady=10)
+
+    ime_clana = ctk.CTkEntry(content_frame, placeholder_text="Ime člana")
+    ime_clana.pack(pady=10)
+
+    def spremi():
+        knjiznica.vrati_knjigu(ime_clana.get(),naslov_knjige.get())
+
+    spremi_btn = ctk.CTkButton(
+        content_frame,
+        text="Vrati knjigu",
+        command=spremi
+    )
+    spremi_btn.pack(pady=20)
+
 def izbor_promijenjen(odabir):
     if odabir == "Dodaj knjigu":
         prikazi_dodaj_knjigu()
     elif odabir == "Dodaj Člana":
         prikazi_dodaj_clana()
+    elif odabir == "Posudi knjigu":
+        prikazi_posudi_knjigu()
+    elif odabir == "Vrati knjigu":
+        prikazi_vrati_knjigu()
+
 
 # Opcije
 izbor = ["Dodaj knjigu", "Dodaj Člana", "Posudi knjigu", "Vrati knjigu"]
