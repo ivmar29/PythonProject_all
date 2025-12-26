@@ -9,6 +9,11 @@
             "name": "Vlak u snijegu",
             "author": "Mato Lovrak",
             "dostupno": false
+        },
+        {
+            "name": "Gospodar prstenova 1",
+            "author": "J. R. R. Tolkien",
+            "dostupno": true
         }
     ],
     "clanovi": [
@@ -36,6 +41,13 @@
             "posudene_knjige": [
                 "Vlak u snijegu"
             ]
+        },
+        {
+            "id": 4,
+            "name": "Dubi",
+            "age": "52",
+            "email": "dubi@gmail.com",
+            "posudene_knjige": []
         }
     ]
 }
