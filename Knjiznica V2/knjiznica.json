@@ -34,6 +34,11 @@
             "name": "Knjiga 4",
             "author": "Autor 4",
             "dostupno": true
+        },
+        {
+            "name": "Harry Potter",
+            "author": "J.K. Rowling",
+            "dostupno": true
         }
     ],
     "clanovi": [
@@ -81,6 +86,13 @@
             "name": "Luka",
             "age": "22",
             "email": "luka22@gmail.com",
+            "posudene_knjige": []
+        },
+        {
+            "id": 7,
+            "name": "Otto",
+            "age": "78",
+            "email": "otto78@gmail.com",
             "posudene_knjige": []
         }
     ]

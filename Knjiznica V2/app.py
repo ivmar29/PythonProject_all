@@ -23,7 +23,7 @@ content_frame.pack(fill="both", expand=True, pady=20)
 def clear_frame():
     for widget in content_frame.winfo_children():
         widget.destroy()
-# "Dodaj knjigu
+# "Dodaj knjigu"
 def prikazi_dodaj_knjigu():
     clear_frame()
 
