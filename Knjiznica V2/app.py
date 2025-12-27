@@ -45,12 +45,13 @@ def prikazi_dodaj_knjigu():
 
     def spremi():
         knjiga = Knjiga(naslov.get(), autor.get())
-        uspjeh = knjiznica.dodaj_knjigu(knjiga)
+        uspjeh,poruka = knjiznica.dodaj_knjigu(knjiga)
+        status_label.configure(text=poruka)
 
-        if uspjeh:
-            status_label.configure(text="Knjiga dodana!")
-        else:
-            status_label.configure(text="Greška pri dodavanju knjige")
+        # if uspjeh:
+        #     status_label.configure(text="Knjiga dodana!")
+        # else:
+        #     status_label.configure(text="Greška pri dodavanju knjige")
 
     spremi_btn = ctk.CTkButton(
         content_frame,

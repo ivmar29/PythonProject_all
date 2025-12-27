@@ -34,6 +34,11 @@
             "name": "c",
             "author": "c",
             "dostupno": true
+        },
+        {
+            "name": "cdc",
+            "author": "cdc",
+            "dostupno": true
         }
     ],
     "clanovi": [

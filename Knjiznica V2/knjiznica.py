@@ -71,19 +71,22 @@ class Knjiznica:
 
         with open(self.json_file, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
+    @staticmethod
+    def normaliziraj(naziv):
+        return naziv.replace(" ", "").lower()  # uklanja razmake i pretvara u mala slova
 
     def dodaj_knjigu(self, knjiga):
-        if not knjiga.name.strip() or not knjiga.author.strip():
-            return False # GUI ce prikazati poruku
+        if not knjiga.name.strip() or not knjiga.author.strip():#Provjerava je li barem jedno polje prazno (naziv knjige ili autor).
+            return False, "Niste unjeli naziv knjige i/ili autora"  # GUI ce prikazati poruku             #Ako jest, odmah vraća False jer nema smisla dalje provjeravati.
 
         for k in self.knjige:
+            #Provjerava postoji li već ista knjiga u knjižnici (duplikat).
             if k.name.lower() == knjiga.name.lower() and k.author.lower() == knjiga.author.lower():
-                return False
+                return False, f"Knjiga '{knjiga.name}' već postoji"
 
-        self.knjige.append(knjiga)
+        self.knjige.append(knjiga) #Knjiga je dodana u knjiznicu
         self.spremi_u_json()
-        print(f"Knjiga '{knjiga.name}' dodana u knjižnicu '{self.name}'.")
-        return True
+        return True, f"Knjiga '{knjiga.name}' je dodana u knjižnicu '{self.name}.'"
 
     def dodaj_clana(self,clan):
 
@@ -105,7 +108,7 @@ class Knjiznica:
 
     def posudi_knjigu(self, ime_clana, naslov_knjige):
         clan = next((c for c in self.clanovi if c.name.lower() == ime_clana.lower()), None)
-        knjiga = next((k for k in self.knjige if k.name.lower() == naslov_knjige.lower()), None)
+        knjiga = next((k for k in self.knjige if self.normaliziraj(k.name) == self.normaliziraj(naslov_knjige)), None)
 
         if not clan:
             print(f"Član '{ime_clana}' nije pronađen")
