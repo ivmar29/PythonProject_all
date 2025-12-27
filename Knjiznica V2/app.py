@@ -3,6 +3,7 @@ from knjiznica import Knjiznica
 from clan import Clan
 from knjiga import Knjiga
 
+# Odabir boje teme
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
@@ -15,11 +16,20 @@ app.geometry("700x450")
 #stvorimo knjiznicu
 knjiznica = Knjiznica("Gradska knjiznica")
 
-# Frame
+# Frame (prozor/okvir gdje se nalaze unos sa ponuđene opcije
 content_frame = ctk.CTkFrame(app)
 content_frame.pack(fill="both", expand=True, pady=20)
+# Naslov/pozdrav
+label = ctk.CTkLabel(app, text="Dobro došli u Gradsku knjižnicu!")
+label.pack(pady=10)
 
-# Funkcija za čišćenje ekrana
+label_obavijesti = ctk.CTkLabel(app, text="Odaberite jednu od opcija!")
+label_obavijesti.pack(pady=10)
+# Promjenjivi label
+status_label = ctk.CTkLabel(app, text="")
+status_label.pack(pady=5)
+
+# Funkcija za čišćenje ekrana(očistimo prozor za novu formu)
 def clear_frame():
     for widget in content_frame.winfo_children():
         widget.destroy()
@@ -35,7 +45,12 @@ def prikazi_dodaj_knjigu():
 
     def spremi():
         knjiga = Knjiga(naslov.get(), autor.get())
-        knjiznica.dodaj_knjigu(knjiga)
+        uspjeh = knjiznica.dodaj_knjigu(knjiga)
+
+        if uspjeh:
+            status_label.configure(text="Knjiga dodana!")
+        else:
+            status_label.configure(text="Greška pri dodavanju knjige")
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -59,7 +74,11 @@ def prikazi_dodaj_clana():
 
     def spremi():
         clan = Clan(ime.get(), godine.get(), email.get())
-        knjiznica.dodaj_clana(clan)
+        uspjeh = knjiznica.dodaj_clana(clan)
+        if uspjeh:
+            status_label.configure(text="Član dodan!")
+        else:
+            status_label.configure(text="Greška pri dodavanju člana")
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -79,7 +98,11 @@ def prikazi_posudi_knjigu():
     ime_clana.pack(pady=10)
 
     def spremi():
-        knjiznica.posudi_knjigu(ime_clana.get(),naslov_knjige.get())
+        uspjeh = knjiznica.posudi_knjigu(ime_clana.get(),naslov_knjige.get())
+        if uspjeh:
+            status_label.configure(text="Knjiga je uspiješno posuđena!")
+        else:
+            status_label.configure(text="Član/knjiga nisu pronađeni")
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -99,7 +122,11 @@ def prikazi_vrati_knjigu():
     ime_clana.pack(pady=10)
 
     def spremi():
-        knjiznica.vrati_knjigu(ime_clana.get(),naslov_knjige.get())
+        uspjeh = knjiznica.vrati_knjigu(ime_clana.get(), naslov_knjige.get())
+        if uspjeh:
+            status_label.configure(text="Knjiga je uspiješno vraćena!")
+        else:
+            status_label.configure(text="Član/knjiga nisu pronađeni")
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -109,6 +136,8 @@ def prikazi_vrati_knjigu():
     spremi_btn.pack(pady=20)
 
 def izbor_promijenjen(odabir):
+    # resetiramo status label
+    status_label.configure(text="")
     if odabir == "Dodaj knjigu":
         prikazi_dodaj_knjigu()
     elif odabir == "Dodaj Člana":
@@ -126,6 +155,7 @@ izbor = ["Dodaj knjigu", "Dodaj Člana", "Posudi knjigu", "Vrati knjigu"]
 menu = ctk.CTkOptionMenu(app,values=izbor, command=izbor_promijenjen)
 # govori: Prikaži ovaj widget u prozoru. bez pack() ili grid() widget se ne vidi
 menu.pack(pady=20)
+prikazi_dodaj_knjigu() # Dodaj knjigu je default prikaz prilikom pokretanja programa
  # pokrece gui, slusa klikove i drzi prozor otvoren
 app.mainloop()
 

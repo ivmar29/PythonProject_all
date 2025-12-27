@@ -1,21 +1,6 @@
 {
     "knjige": [
         {
-            "name": "Družba Pere Kvržice",
-            "author": "Mato Lovrak",
-            "dostupno": false
-        },
-        {
-            "name": "Vlak u snijegu",
-            "author": "Mato Lovrak",
-            "dostupno": false
-        },
-        {
-            "name": "Gospodar prstenova 1",
-            "author": "J. R. R. Tolkien",
-            "dostupno": true
-        },
-        {
             "name": "Knjiga 1",
             "author": "Autor 1",
             "dostupno": true
@@ -26,73 +11,37 @@
             "dostupno": true
         },
         {
-            "name": "Knjiga 3",
-            "author": "Autor 3",
+            "name": "Harry Potter 2",
+            "author": "J.K.Rowling",
             "dostupno": true
         },
         {
-            "name": "Knjiga 4",
-            "author": "Autor 4",
+            "name": "Harry Potter 3",
+            "author": "J.K.Rowling",
             "dostupno": true
         },
         {
-            "name": "Harry Potter",
-            "author": "J.K. Rowling",
+            "name": "ax",
+            "author": "ax",
+            "dostupno": true
+        },
+        {
+            "name": "a",
+            "author": "a",
+            "dostupno": true
+        },
+        {
+            "name": "c",
+            "author": "c",
             "dostupno": true
         }
     ],
     "clanovi": [
         {
             "id": 1,
-            "name": "Ivan",
-            "age": "31",
-            "email": "ivan@gmail.com",
-            "posudene_knjige": [
-                "Družba Pere Kvržice"
-            ]
-        },
-        {
-            "id": 2,
-            "name": "Matea",
-            "age": "29",
-            "email": "matea@gmail.com",
-            "posudene_knjige": []
-        },
-        {
-            "id": 3,
-            "name": "Tina",
-            "age": "22",
-            "email": "tina@gmail.com",
-            "posudene_knjige": [
-                "Vlak u snijegu"
-            ]
-        },
-        {
-            "id": 4,
-            "name": "Dubi",
-            "age": "52",
-            "email": "dubi@gmail.com",
-            "posudene_knjige": []
-        },
-        {
-            "id": 5,
-            "name": "Slavko",
-            "age": "40",
-            "email": "slavko40@gmail.com",
-            "posudene_knjige": []
-        },
-        {
-            "id": 6,
-            "name": "Luka",
-            "age": "22",
-            "email": "luka22@gmail.com",
-            "posudene_knjige": []
-        },
-        {
-            "id": 7,
-            "name": "Otto",
-            "age": "78",
-            "email": "otto78@gmail.com",
+            "name": "Anto",
+            "age": "44",
+            "email": "anto44@gmail.com",
             "posudene_knjige": []
         }
     ]

@@ -74,37 +74,34 @@ class Knjiznica:
 
     def dodaj_knjigu(self, knjiga):
         if not knjiga.name.strip() or not knjiga.author.strip():
-            print("Niste unijeli naziv knjige i/ili autora!")
-            return
+            return False # GUI ce prikazati poruku
 
         for k in self.knjige:
             if k.name.lower() == knjiga.name.lower() and k.author.lower() == knjiga.author.lower():
-                print(f"Knjiga '{knjiga.name}' već postoji!")
-                return
+                return False
 
         self.knjige.append(knjiga)
         self.spremi_u_json()
         print(f"Knjiga '{knjiga.name}' dodana u knjižnicu '{self.name}'.")
+        return True
 
     def dodaj_clana(self,clan):
 
-        if not clan.name.strip() or not clan.age.strip() or not clan.email.strip():
-            print("Niste unijeli sve podatke!")
-            return
+        if not clan.name.strip() or not clan.age.strip() or not clan.email.strip(): #Nisu svi podaci uneseni
+            return False
 
-        if not clan.age.isdigit():
-            print("Godine moraju biti broj!")
-            return
+        if not clan.age.isdigit():#Godine nisu broj
+            return False
 
-        for c in self.clanovi:
+        for c in self.clanovi: #Duplikat clanova
             if c.email == clan.email:
-                print(f"Član '{clan.name}' već postoji!")
-                return
+                return False
 
         clan.id = len(self.clanovi) + 1
         self.clanovi.append(clan)
         self.spremi_u_json()
         print(f"Član '{clan.name}' je dodan/a.")
+        return True
 
     def posudi_knjigu(self, ime_clana, naslov_knjige):
         clan = next((c for c in self.clanovi if c.name.lower() == ime_clana.lower()), None)
@@ -112,21 +109,21 @@ class Knjiznica:
 
         if not clan:
             print(f"Član '{ime_clana}' nije pronađen")
-            return
+            return False
 
         if not knjiga:
             print(f"Knjiga '{naslov_knjige}' nije pronađena.")
-            return
+            return False
 
         if not knjiga.dostupno:
             print(f"Knjiga '{knjiga.name}' trenutno nije dostupna.")
-            return
+            return False
 
         knjiga.dostupno = False
         clan.posudene_knjige.append(knjiga.name)
         self.spremi_u_json()
+        return True
 
-        print(f"Član '{clan.name}' je posudio knjigu '{knjiga.name}'.")
 
 
     def vrati_knjigu(self, ime_clana, naslov_knjige):
@@ -135,15 +132,16 @@ class Knjiznica:
 
         if not clan:
             print(f"Član '{ime_clana}' nije pronađen")
-            return
+            return False
 
         if not knjiga:
             print(f"Knjiga '{naslov_knjige}' nije pronađena.")
-            return
+            return False
 
         knjiga.dostupno = True
         clan.posudene_knjige.remove(knjiga.name)
         self.spremi_u_json()
+        return True
 
-        print(f"Član '{clan.name}' je vratio knjigu '{knjiga.name}'.")
+
 
