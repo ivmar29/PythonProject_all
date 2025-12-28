@@ -119,15 +119,9 @@ def prikazi_vrati_knjigu():
     naslov_knjige = ctk.CTkEntry(content_frame, placeholder_text="Naziv knjige")
     naslov_knjige.pack(pady=10)
 
-    ime_clana = ctk.CTkEntry(content_frame, placeholder_text="Ime člana")
-    ime_clana.pack(pady=10)
-
     def spremi():
-        uspjeh = knjiznica.vrati_knjigu(ime_clana.get(), naslov_knjige.get())
-        if uspjeh:
-            status_label.configure(text="Knjiga je uspiješno vraćena!")
-        else:
-            status_label.configure(text="Član/knjiga nisu pronađeni")
+        uspjeh,poruka = knjiznica.vrati_knjigu(naslov_knjige.get())
+        status_label.configure(text=poruka)
 
     spremi_btn = ctk.CTkButton(
         content_frame,

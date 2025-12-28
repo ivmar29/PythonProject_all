@@ -107,7 +107,7 @@ class Knjiznica:
         return True
 
     def posudi_knjigu(self, ime_clana, naslov_knjige):
-        clan = next((c for c in self.clanovi if c.name.lower() == ime_clana.lower()), None)
+        clan = next((c for c in self.clanovi if self.normaliziraj(c.name) == self.normaliziraj(ime_clana)), None)
         knjiga = next((k for k in self.knjige if self.normaliziraj(k.name) == self.normaliziraj(naslov_knjige)), None)
 
         if not clan:
@@ -129,22 +129,24 @@ class Knjiznica:
 
 
 
-    def vrati_knjigu(self, ime_clana, naslov_knjige):
-        clan = next((c for c in self.clanovi if c.name.lower() == ime_clana.lower()), None)
-        knjiga = next((k for k in self.knjige if k.name.lower() == naslov_knjige.lower()), None)
-
-        if not clan:
-            print(f"Član '{ime_clana}' nije pronađen")
-            return False
+    def vrati_knjigu(self, naslov_knjige):
+        #pronalazi knjigu i onda ju normalizira(velika/mala slova, razmaci) i uspoređuje s imenom koje je korisnik unjeo.
+        knjiga = next((k for k in self.knjige if self.normaliziraj(k.name) == self.normaliziraj(naslov_knjige)), None)
 
         if not knjiga:
-            print(f"Knjiga '{naslov_knjige}' nije pronađena.")
-            return False
+            return False, f"Knjiga '{naslov_knjige}' nije pronađena."
+
+        #pronalazi člana i onda provjerava da li se ime knjige koje je unešeno nalazi u listi posuđenih knjiga tog clana te nastavlja.
+        clan = next((c for c in self.clanovi if knjiga.name in c.posudene_knjige), None)
+
+        if not clan:
+            return False, f"Knjiga nije posuđena niti jednom članu"
 
         knjiga.dostupno = True
         clan.posudene_knjige.remove(knjiga.name)
         self.spremi_u_json()
-        return True
+
+        return True, f"Knjiga '{knjiga.name}' je vraćena"
 
 
 
