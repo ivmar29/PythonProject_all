@@ -48,10 +48,6 @@ def prikazi_dodaj_knjigu():
         uspjeh,poruka = knjiznica.dodaj_knjigu(knjiga)
         status_label.configure(text=poruka)
 
-        # if uspjeh:
-        #     status_label.configure(text="Knjiga dodana!")
-        # else:
-        #     status_label.configure(text="Greška pri dodavanju knjige")
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -75,11 +71,8 @@ def prikazi_dodaj_clana():
 
     def spremi():
         clan = Clan(ime.get(), godine.get(), email.get())
-        uspjeh = knjiznica.dodaj_clana(clan)
-        if uspjeh:
-            status_label.configure(text="Član dodan!")
-        else:
-            status_label.configure(text="Greška pri dodavanju člana")
+        uspjeh, poruka = knjiznica.dodaj_clana(clan)
+        status_label.configure(text=poruka)
 
     spremi_btn = ctk.CTkButton(
         content_frame,
@@ -99,11 +92,8 @@ def prikazi_posudi_knjigu():
     ime_clana.pack(pady=10)
 
     def spremi():
-        uspjeh = knjiznica.posudi_knjigu(ime_clana.get(),naslov_knjige.get())
-        if uspjeh:
-            status_label.configure(text="Knjiga je uspiješno posuđena!")
-        else:
-            status_label.configure(text="Član/knjiga nisu pronađeni")
+        uspjeh, poruka = knjiznica.posudi_knjigu(ime_clana.get(),naslov_knjige.get())
+        status_label.configure(text=poruka)
 
     spremi_btn = ctk.CTkButton(
         content_frame,

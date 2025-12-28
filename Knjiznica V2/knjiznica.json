@@ -3,7 +3,7 @@
         {
             "name": "Knjiga 1",
             "author": "Autor 1",
-            "dostupno": true
+            "dostupno": false
         },
         {
             "name": "Knjiga 2",
@@ -47,6 +47,29 @@
             "name": "Anto",
             "age": "44",
             "email": "anto44@gmail.com",
+            "posudene_knjige": [
+                "Knjiga 1"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Matea",
+            "age": "22",
+            "email": "matea@gmail.cmww",
+            "posudene_knjige": []
+        },
+        {
+            "id": 3,
+            "name": "Ena",
+            "age": "12",
+            "email": "ena@gmail.com",
+            "posudene_knjige": []
+        },
+        {
+            "id": 4,
+            "name": "TIna",
+            "age": 22,
+            "email": "tina@gmail.com",
             "posudene_knjige": []
         }
     ]

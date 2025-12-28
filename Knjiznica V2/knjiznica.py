@@ -1,4 +1,5 @@
 import json
+import re
 import os
 from knjiga import Knjiga
 from clan import Clan
@@ -74,6 +75,10 @@ class Knjiznica:
     @staticmethod
     def normaliziraj(naziv):
         return naziv.replace(" ", "").lower()  # uklanja razmake i pretvara u mala slova
+    @staticmethod
+    def email_ok(email: str) -> bool:
+        pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+        return re.match(pattern, email) is not None
 
     def dodaj_knjigu(self, knjiga):
         if not knjiga.name.strip() or not knjiga.author.strip():#Provjerava je li barem jedno polje prazno (naziv knjige ili autor).
@@ -91,41 +96,51 @@ class Knjiznica:
     def dodaj_clana(self,clan):
 
         if not clan.name.strip() or not clan.age.strip() or not clan.email.strip(): #Nisu svi podaci uneseni
-            return False
+            return False, "Niste unjeli sve podatke."
 
-        if not clan.age.isdigit():#Godine nisu broj
-            return False
+        if not clan.age.isdigit():#provjerava da li je string sastavljen samo od brojeva
+            return False, "Godine moraj biti broj"
 
-        for c in self.clanovi: #Duplikat clanova
+        clan.age = int(clan.age)
+        if clan.age < 1 or clan.age > 99:
+            return False, "Raspon godina:(1-99)!"
+
+        if not self.email_ok(clan.email):
+            return False, "Neispravni format email adrese!"
+
+
+        # Provjera duplikata preko email-a
+        for c in self.clanovi:
             if c.email == clan.email:
-                return False
+                return False, f"Član {clan.name} vec postoji. Pokušajte ponovo. "
 
         clan.id = len(self.clanovi) + 1
         self.clanovi.append(clan)
         self.spremi_u_json()
-        print(f"Član '{clan.name}' je dodan/a.")
-        return True
+        return True, f"Član '{clan.name}' je dodan/a."
 
     def posudi_knjigu(self, ime_clana, naslov_knjige):
         clan = next((c for c in self.clanovi if self.normaliziraj(c.name) == self.normaliziraj(ime_clana)), None)
         knjiga = next((k for k in self.knjige if self.normaliziraj(k.name) == self.normaliziraj(naslov_knjige)), None)
 
+        if not clan and not knjiga:
+            return False, f"Knjiga '{naslov_knjige}' i član '{ime_clana}' nisu pronađeni"
+
         if not clan:
-            print(f"Član '{ime_clana}' nije pronađen")
-            return False
+            return False, f"Član '{ime_clana}' nije pronađen"
 
         if not knjiga:
-            print(f"Knjiga '{naslov_knjige}' nije pronađena.")
-            return False
+            return False, f"Knjiga '{naslov_knjige}' nije pronađena."
 
         if not knjiga.dostupno:
-            print(f"Knjiga '{knjiga.name}' trenutno nije dostupna.")
-            return False
+            return False, f"Knjiga '{knjiga.name}' trenutno nije dostupna."
+
+
 
         knjiga.dostupno = False
         clan.posudene_knjige.append(knjiga.name)
         self.spremi_u_json()
-        return True
+        return True, "Knjiga je uspiješno posuđena!"
 
 
 
