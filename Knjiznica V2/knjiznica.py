@@ -145,7 +145,7 @@ class Knjiznica:
 
 
     def vrati_knjigu(self, naslov_knjige):
-        #pronalazi knjigu i onda ju normalizira(velika/mala slova, razmaci) i uspoređuje s imenom koje je korisnik unjeo.
+        #pronalazi knjigu i ondaa ju normalizira(velika/mala slova, razmaci) i uspoređuje s imenom koje je korisnik unjeo.
         knjiga = next((k for k in self.knjige if self.normaliziraj(k.name) == self.normaliziraj(naslov_knjige)), None)
 
         if not knjiga:

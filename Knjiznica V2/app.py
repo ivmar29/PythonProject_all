@@ -81,7 +81,7 @@ def prikazi_dodaj_clana():
     )
     spremi_btn.pack(pady=20)
 
-# "Posudi knjigu"
+# "Posudi knjigu"a
 def prikazi_posudi_knjigu():
     clear_frame()
 
